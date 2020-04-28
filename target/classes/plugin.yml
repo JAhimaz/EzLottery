@@ -4,6 +4,7 @@ main: com.jahimaz.EZLottery
 api-version: 1.13
 load: STARTUP
 authors: [ItsJustDsAW]
+depend: [Vault]
 description: A simple, fast and easy lottery plugin with placeholder API support
 commands:
   lottery:

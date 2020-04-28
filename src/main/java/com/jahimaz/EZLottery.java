@@ -4,17 +4,24 @@ import com.jahimaz.dataHandler.JoinLotteryInv;
 import com.jahimaz.lotteryHandler.Lottery;
 import com.jahimaz.lotteryHandler.LotteryMechanics;
 import com.jahimaz.lotteryHandler.Ticket;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 
 public final class EZLottery extends JavaPlugin {
+
+    //Vault Related
+    private static Economy econ = null;
+
 
     int maxTickets = getConfig().getInt("max-tickets");
     public static Lottery currentLottery;
@@ -22,7 +29,13 @@ public final class EZLottery extends JavaPlugin {
     @Override
     public void onEnable() {
         doWelcomeCheck();
+        loadConfig();
         loadPlugins();
+        if (!setupEconomy() ) {
+            System.out.println(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
     }
 
     @Override
@@ -64,7 +77,7 @@ public final class EZLottery extends JavaPlugin {
                             createLottery();
                         }
                         int playerCurrentTickets = currentLottery.getPlayerTickets(((Player) sender).getDisplayName());
-                        JoinLotteryInv lotteryJoin = new JoinLotteryInv(((Player) sender).getDisplayName(), playerCurrentTickets, maxTickets);
+                        JoinLotteryInv lotteryJoin = new JoinLotteryInv(this,((Player) sender).getDisplayName(), playerCurrentTickets, maxTickets);
                         getServer().getPluginManager().registerEvents(lotteryJoin, this);
                         lotteryJoin.openInventory(((Player) sender).getPlayer());
                     }
@@ -112,5 +125,30 @@ public final class EZLottery extends JavaPlugin {
 
     private void loadPlugins(){
 
+    }
+
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return econ != null;
+    }
+
+    public static Economy getEconomy() {
+        return econ;
+    }
+
+    public void loadConfig(){
+        final FileConfiguration config = this.getConfig();
+
+        getConfig().options().copyDefaults(true);
+        //Placeholders
+
+        saveDefaultConfig();
     }
 }

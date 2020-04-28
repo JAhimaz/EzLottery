@@ -1,14 +1,12 @@
 package com.jahimaz.dataHandler;
 
 import com.jahimaz.EZLottery;
-import com.jahimaz.lotteryHandler.Lottery;
 import com.jahimaz.lotteryHandler.Ticket;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,17 +23,20 @@ import java.util.Arrays;
 public class JoinLotteryInv implements InventoryHolder, Listener {
     private final Inventory inv;
 
+    private EZLottery plugin;
+
     int purchasingTickets = 1, currentTickets, maxTickets;
 
     ItemStack ticketCounter;
 
-    public JoinLotteryInv(String name, int currentTickets, int maxTickets) {
+    public JoinLotteryInv(EZLottery instance, String name, int currentTickets, int maxTickets) {
+        this.plugin = instance;
         System.out.println("Current Tickets: " + currentTickets);
         this.currentTickets = currentTickets;
         this.maxTickets = maxTickets;
 
         inv = Bukkit.createInventory(this, 45, ChatColor.GOLD + "Purchase Lottery Tickets");
-        ticketCounter = createGuiItem(Material.PAPER, "Tickets For Purchase: " + purchasingTickets + " | " + ChatColor.GREEN + "Price: $","TicketCounter", 1, false);
+        ticketCounter = createGuiItem(Material.PAPER, "Tickets For Purchase: " + purchasingTickets + " | " + ChatColor.GREEN + "Price: $" + plugin.getConfig().getDouble("price-per-ticket"),"TicketCounter", 1, false);
         if(currentTickets == 0){
             inv.setItem(21, createGuiItem(Material.BARRIER, "Current Tickets: " + currentTickets, "CurrentTickets", 1, false));
         }else{
@@ -112,15 +113,19 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
                 e.getWhoClicked().closeInventory();
             }
 
-            //Add Participant If necessary
-            if(currentTickets == 0){
-                EZLottery.currentLottery.addParticipant();
+            if(EZLottery.getEconomy().getBalance((Player) e.getWhoClicked()) >= (purchasingTickets * plugin.getConfig().getDouble("price-per-ticket"))){
+                EZLottery.getEconomy().withdrawPlayer((Player) e.getWhoClicked(),purchasingTickets * plugin.getConfig().getDouble("price-per-ticket"));
+                if(currentTickets == 0){
+                    EZLottery.currentLottery.addParticipant();
+                }
+                //Adding Tickets
+                for(int i = 1; i <= purchasingTickets; i++){
+                    EZLottery.currentLottery.addTicket(new Ticket(e.getWhoClicked().getName(), EZLottery.currentLottery.getTicketCount() + 1));
+                }
+                e.getWhoClicked().sendMessage(ChatColor.GREEN + "You Have Purchased " + purchasingTickets + " Tickets!");
+            }else{
+                e.getWhoClicked().sendMessage(ChatColor.RED + "You Don't Have Enough Money");
             }
-            //Adding Tickets
-            for(int i = 1; i <= purchasingTickets; i++){
-                EZLottery.currentLottery.addTicket(new Ticket(e.getWhoClicked().getName(), EZLottery.currentLottery.getTicketCount() + 1));
-            }
-            e.getWhoClicked().sendMessage(ChatColor.GREEN + "You Have Purchased " + purchasingTickets + " Tickets!");
             e.getWhoClicked().closeInventory();
         }
         if(clickedItem.getItemMeta().getLocalizedName().equalsIgnoreCase("cancel")){
