@@ -34,8 +34,8 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
         this.currentTickets = currentTickets;
         this.maxTickets = maxTickets;
 
-        inv = Bukkit.createInventory(this, 45, "&6Join Lottery");
-        ticketCounter = createGuiItem(Material.PAPER, "Tickets For Purchase: " + purchasingTickets,"TicketCounter", 1, false);
+        inv = Bukkit.createInventory(this, 45, ChatColor.GOLD + "Purchase Lottery Tickets");
+        ticketCounter = createGuiItem(Material.PAPER, "Tickets For Purchase: " + purchasingTickets + " | " + ChatColor.GREEN + "Price: $","TicketCounter", 1, false);
         if(currentTickets == 0){
             inv.setItem(21, createGuiItem(Material.BARRIER, "Current Tickets: " + currentTickets, "CurrentTickets", 1, false));
         }else{
@@ -89,13 +89,13 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
         if(clickedItem.getItemMeta().getLocalizedName().equalsIgnoreCase("TicketCounter")){
             if(e.isLeftClick() && ticketCounter.getAmount() < (maxTickets - currentTickets)) {
                 ticketCounter.setAmount(ticketCounter.getAmount() + 1);
-            }else{
+            }else if(e.isLeftClick() && ticketCounter.getAmount() >= (maxTickets - currentTickets)){
                 e.getWhoClicked().sendMessage(ChatColor.RED + "Maximum " + maxTickets + " Tickets");
             }
 
             if(e.isRightClick() && ticketCounter.getAmount() > 1){
                 ticketCounter.setAmount(ticketCounter.getAmount() - 1);
-            }else{
+            }else if(e.isRightClick() && ticketCounter.getAmount() == 1){
                 e.getWhoClicked().sendMessage(ChatColor.RED + "Minimum 1 Ticket");
             }
 
@@ -125,6 +125,9 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
         }
         if(clickedItem.getItemMeta().getLocalizedName().equalsIgnoreCase("cancel")){
             this.purchasingTickets = 0;
+            if(EZLottery.currentLottery.getParticipantsCount() == 0){
+                EZLottery.cancelLottery();
+            }
             e.getWhoClicked().closeInventory();
         }
     }

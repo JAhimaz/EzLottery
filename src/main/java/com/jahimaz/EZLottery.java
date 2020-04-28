@@ -16,12 +16,13 @@ import java.util.ArrayList;
 
 public final class EZLottery extends JavaPlugin {
 
-    int maxTickets = 10;
+    int maxTickets = getConfig().getInt("max-tickets");
     public static Lottery currentLottery;
 
     @Override
     public void onEnable() {
         doWelcomeCheck();
+        loadPlugins();
     }
 
     @Override
@@ -66,7 +67,6 @@ public final class EZLottery extends JavaPlugin {
                         JoinLotteryInv lotteryJoin = new JoinLotteryInv(((Player) sender).getDisplayName(), playerCurrentTickets, maxTickets);
                         getServer().getPluginManager().registerEvents(lotteryJoin, this);
                         lotteryJoin.openInventory(((Player) sender).getPlayer());
-                        int purchasingTickets = lotteryJoin.getPurchasingTickets();
                     }
                     if(args[0].equalsIgnoreCase("debug")){
                         sender.sendMessage(ChatColor.GREEN + "=============== DEBUG =================");
@@ -74,56 +74,13 @@ public final class EZLottery extends JavaPlugin {
                             sender.sendMessage(ChatColor.RED + "No Lottery In Progress");
                         }else{
                             ArrayList<Ticket> currentTickets = currentLottery.getTickets();
-                            sender.sendMessage(ChatColor.WHITE + "Current Tickets in Lottery = " + currentLottery.getTicketCount());
+                            sender.sendMessage(ChatColor.WHITE + "Current Tickets in Lottery: " + ChatColor.GREEN + currentLottery.getTicketCount());
+                            sender.sendMessage(ChatColor.WHITE + "Current Participants in Lottery: " + ChatColor.GREEN + currentLottery.getParticipantsCount());
                             for(int i = 0; i < currentTickets.size(); i++){
                                 sender.sendMessage("Ticket #" + currentTickets.get(i).getTicketNumber() + " Owned By: " + currentTickets.get(i).getPlayerName());
                             }
                         }
                         sender.sendMessage(ChatColor.GREEN + "=============== DEBUG =================");
-                    }
-                }
-                if(args.length == 2){
-                    if(args[0].equalsIgnoreCase("join")){
-                        if(currentLottery == null){
-                            createLottery();
-                        }
-                        //Do Check To See If Player Is Already Entered
-                        if(!(currentLottery.checkPlayer(((Player) sender).getDisplayName(), maxTickets))){
-                            try{
-                                //Change Max Tickets To Read Config
-                                int playerCurrentTickets = currentLottery.getPlayerTickets(((Player) sender).getDisplayName());
-                                int noOfTickets = Integer.parseInt(args[1]);
-
-                                if(noOfTickets > 0 && noOfTickets <= maxTickets){
-                                    if(noOfTickets <= (maxTickets - playerCurrentTickets)){
-                                        //CHECK IF PLAYER CAN AFFORD (VAULT DEPENDENCY)
-                                        //Check If first purchase
-                                        if(playerCurrentTickets == 0){
-                                            currentLottery.addParticipant();
-
-                                        }
-
-                                        //Adding Tickets
-                                        for(int i = 1; i <= noOfTickets; i++){
-                                            currentLottery.addTicket(new Ticket(((Player) sender).getDisplayName(), currentLottery.getTicketCount() + 1));
-                                        }
-                                        sender.sendMessage(ChatColor.GREEN + "You have successfully purchased " + noOfTickets + " tickets!");
-                                    }else{
-                                        sender.sendMessage(ChatColor.RED + "You can't purchase more than " + maxTickets + " tickets!");
-                                    }
-                                }else{
-                                    sender.sendMessage(ChatColor.RED + "Please Enter A Valid Ticket Amount (1 - " + maxTickets + ")");
-                                }
-                            }catch(NumberFormatException e){
-                                sender.sendMessage(ChatColor.RED + args[1] + " Is not a valid ticket number! (1 - " + maxTickets + ")");
-                            }
-                        }else{
-                            sender.sendMessage(ChatColor.RED + "You can't purchase more than " + maxTickets + " tickets!");
-                        }
-
-                        if(currentLottery.getParticipantsCount() == 0){
-                            cancelLottery();
-                        }
                     }
                 }
             }
@@ -136,7 +93,7 @@ public final class EZLottery extends JavaPlugin {
         currentLottery = new Lottery();
     }
 
-    private void cancelLottery() {
+    public static void cancelLottery() {
         currentLottery = null;
     }
 
@@ -151,5 +108,9 @@ public final class EZLottery extends JavaPlugin {
 
     private void getPluginDetails() {
         //Print Plugin Details
+    }
+
+    private void loadPlugins(){
+
     }
 }
