@@ -1,0 +1,11 @@
+name: EZLottery
+version: ${project.version}
+main: com.jahimaz.EZLottery
+api-version: 1.13
+load: STARTUP
+authors: [ItsJustDsAW]
+description: A simple, fast and easy lottery plugin with placeholder API support
+commands:
+  lottery:
+    description: Launch the lottery
+    aliases: [lm, lot, pot]
