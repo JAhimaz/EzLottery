@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24b65ad8-b29f-4658-acb0-de3c2f60a214" name="Default Changelist" comment="" />
+    <list default="true" id="24b65ad8-b29f-4658-acb0-de3c2f60a214" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/EZLottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/EZLottery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT-shaded.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT-shaded.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-Lottery-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-Lottery-1.0-SNAPSHOT.jar" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +25,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -29,6 +40,9 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1b9ozGB7BnQKumPaswvRGluQJca" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -36,6 +50,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -81,7 +96,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588053930831</updated>
-      <workItem from="1588053935378" duration="11632000" />
+      <workItem from="1588053935378" duration="20244000" />
     </task>
     <servers />
   </component>
@@ -93,22 +108,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1588055523283" />
-    <state width="1877" height="82" key="GridCell.Tab.0.bottom" timestamp="1588065463913">
+    <state width="1877" height="82" key="GridCell.Tab.0.bottom" timestamp="1588074979271">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="82" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588065463913" />
-    <state width="1877" height="82" key="GridCell.Tab.0.center" timestamp="1588065463912">
+    <state width="1877" height="82" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588074979271" />
+    <state width="1877" height="82" key="GridCell.Tab.0.center" timestamp="1588074979270">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="82" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588065463912" />
-    <state width="1877" height="82" key="GridCell.Tab.0.left" timestamp="1588065463912">
+    <state width="1877" height="82" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588074979270" />
+    <state width="1877" height="82" key="GridCell.Tab.0.left" timestamp="1588074979270">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="82" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588065463912" />
-    <state width="1877" height="82" key="GridCell.Tab.0.right" timestamp="1588065463912">
+    <state width="1877" height="82" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588074979270" />
+    <state width="1877" height="82" key="GridCell.Tab.0.right" timestamp="1588074979271">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="82" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588065463912" />
+    <state width="1877" height="82" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588074979271" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1588055559329">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

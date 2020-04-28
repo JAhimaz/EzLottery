@@ -1,5 +1,6 @@
 package com.jahimaz;
 
+import com.jahimaz.dataHandler.JoinLotteryInv;
 import com.jahimaz.lotteryHandler.Lottery;
 import com.jahimaz.lotteryHandler.LotteryMechanics;
 import com.jahimaz.lotteryHandler.Ticket;
@@ -8,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 public final class EZLottery extends JavaPlugin {
 
     int maxTickets = 10;
-    Lottery currentLottery;
+    public static Lottery currentLottery;
 
     @Override
     public void onEnable() {
@@ -31,7 +33,7 @@ public final class EZLottery extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getName().equals("lottery")){
-            
+
             /*                  CONSOLE SENT COMMANDS                 */
 
             if(sender instanceof ConsoleCommandSender){
@@ -57,7 +59,14 @@ public final class EZLottery extends JavaPlugin {
                         reloadPlugin();
                     }
                     if(args[0].equalsIgnoreCase("join")){
-                        sender.sendMessage(ChatColor.RED + "Invalid Syntax, do /lottery join <1-10>");
+                        if(currentLottery == null){
+                            createLottery();
+                        }
+                        int playerCurrentTickets = currentLottery.getPlayerTickets(((Player) sender).getDisplayName());
+                        JoinLotteryInv lotteryJoin = new JoinLotteryInv(((Player) sender).getDisplayName(), playerCurrentTickets, maxTickets);
+                        getServer().getPluginManager().registerEvents(lotteryJoin, this);
+                        lotteryJoin.openInventory(((Player) sender).getPlayer());
+                        int purchasingTickets = lotteryJoin.getPurchasingTickets();
                     }
                     if(args[0].equalsIgnoreCase("debug")){
                         sender.sendMessage(ChatColor.GREEN + "=============== DEBUG =================");
@@ -91,6 +100,7 @@ public final class EZLottery extends JavaPlugin {
                                         //Check If first purchase
                                         if(playerCurrentTickets == 0){
                                             currentLottery.addParticipant();
+
                                         }
 
                                         //Adding Tickets
