@@ -4,6 +4,7 @@ import com.jahimaz.dataHandler.JoinLotteryInv;
 import com.jahimaz.lotteryHandler.Lottery;
 import com.jahimaz.lotteryHandler.LotteryMechanics;
 import com.jahimaz.lotteryHandler.Ticket;
+import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -77,9 +78,13 @@ public final class EZLottery extends JavaPlugin {
                             createLottery();
                         }
                         int playerCurrentTickets = currentLottery.getPlayerTickets(((Player) sender).getDisplayName());
-                        JoinLotteryInv lotteryJoin = new JoinLotteryInv(this,((Player) sender).getDisplayName(), playerCurrentTickets, maxTickets);
-                        getServer().getPluginManager().registerEvents(lotteryJoin, this);
-                        lotteryJoin.openInventory(((Player) sender).getPlayer());
+                        if(playerCurrentTickets >= maxTickets){
+                            sender.sendMessage(ChatColor.RED + "You purchased the maximum amount of tickets");
+                        }else{
+                            JoinLotteryInv lotteryJoin = new JoinLotteryInv(this,((Player) sender).getDisplayName(), playerCurrentTickets, maxTickets);
+                            getServer().getPluginManager().registerEvents(lotteryJoin, this);
+                            lotteryJoin.openInventory(((Player) sender).getPlayer());
+                        }
                     }
                     if(args[0].equalsIgnoreCase("debug")){
                         sender.sendMessage(ChatColor.GREEN + "=============== DEBUG =================");

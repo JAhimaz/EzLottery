@@ -102,7 +102,7 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
 
             this.purchasingTickets = ticketCounter.getAmount();
             ItemMeta updateName = ticketCounter.getItemMeta();
-            updateName.setDisplayName("Tickets For Purchase: " + purchasingTickets);
+            updateName.setDisplayName("Tickets For Purchase: " + purchasingTickets + " | " + ChatColor.GREEN + "Price: $" + plugin.getConfig().getDouble("price-per-ticket"));
             ticketCounter.setItemMeta(updateName);
             openInventory(e.getWhoClicked());
         }
