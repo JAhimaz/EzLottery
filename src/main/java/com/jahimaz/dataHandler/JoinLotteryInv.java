@@ -12,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemFlag;
@@ -35,16 +36,8 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
         this.currentTickets = currentTickets;
         this.maxTickets = maxTickets;
 
-        inv = Bukkit.createInventory(this, 45, ChatColor.GOLD + "Purchase Lottery Tickets");
-        ticketCounter = createGuiItem(Material.PAPER, "Tickets For Purchase: " + purchasingTickets + " | " + ChatColor.GREEN + "Price: $" + plugin.getConfig().getDouble("price-per-ticket"),"TicketCounter", 1, false);
-        if(currentTickets == 0){
-            inv.setItem(21, createGuiItem(Material.BARRIER, "Current Tickets: " + currentTickets, "CurrentTickets", 1, false));
-        }else{
-            inv.setItem(21, createGuiItem(Material.PAPER, "Current Tickets: " + currentTickets, "CurrentTickets", currentTickets, true));
-        }
-        inv.setItem(24, createGuiItem(Material.BOOK, "Max Tickets: " + (maxTickets - currentTickets), "MaxTickets", (maxTickets - currentTickets), true));
-        inv.setItem(43, createGuiItem(Material.REDSTONE_BLOCK, "CANCEL", "cancel", 1, false));
-        inv.setItem(44, createGuiItem(Material.EMERALD_BLOCK, "PURCHASE TICKETS", "purchase", 1, false));
+        inv = Bukkit.createInventory(this, 45, ChatColor.GOLD + "" + ChatColor.BOLD + "Purchase Lottery Tickets");
+        firstSetup();
     }
 
     @Override
@@ -53,6 +46,7 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
     }
 
     // Nice little method to create a gui item with a custom name, and description
+
     protected ItemStack createGuiItem(final Material material, final String dpName, final String name, final int size, boolean enchanted) {
         final ItemStack item = new ItemStack(material, size);
         final ItemMeta meta = item.getItemMeta();
@@ -65,14 +59,14 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
         item.setItemMeta(meta);
         return item;
     }
-
     // You can open the inventory with this
+
     public void openInventory(final HumanEntity ent) {
         inv.setItem(23, ticketCounter);
         ent.openInventory(inv);
     }
-
     // Check for clicks on items
+
     @EventHandler
     public void onInventoryClick(final InventoryClickEvent e) {
         if (e.getInventory().getHolder() != this) return;
@@ -102,7 +96,7 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
 
             this.purchasingTickets = ticketCounter.getAmount();
             ItemMeta updateName = ticketCounter.getItemMeta();
-            updateName.setDisplayName("Tickets For Purchase: " + purchasingTickets + " | " + ChatColor.GREEN + "Price: $" + plugin.getConfig().getDouble("price-per-ticket"));
+            updateName.setDisplayName("Tickets For Purchase: " + purchasingTickets + " | " + ChatColor.GREEN + "Price: $" + (plugin.getConfig().getDouble("price-per-ticket") * purchasingTickets));
             ticketCounter.setItemMeta(updateName);
             openInventory(e.getWhoClicked());
         }
@@ -130,14 +124,32 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
         }
         if(clickedItem.getItemMeta().getLocalizedName().equalsIgnoreCase("cancel")){
             this.purchasingTickets = 0;
-            if(EZLottery.currentLottery.getParticipantsCount() == 0){
-                EZLottery.cancelLottery();
-            }
             e.getWhoClicked().closeInventory();
+        }
+
+    }
+
+    @EventHandler
+    public void onInventoryClose(final InventoryCloseEvent e){
+        if (e.getInventory().getHolder() != this) return;
+
+        if(EZLottery.currentLottery.getParticipantsCount() == 0){
+            EZLottery.cancelLottery();
         }
     }
 
-    public int getPurchasingTickets() {
-        return purchasingTickets;
+    private void firstSetup() {
+        for(int i = 0; i < inv.getSize(); i++){
+            inv.setItem(i, createGuiItem(Material.GRAY_STAINED_GLASS_PANE, " ", " ", 1, false));
+        }
+        ticketCounter = createGuiItem(Material.PAPER, "Tickets For Purchase: " + purchasingTickets + " | " + ChatColor.GREEN + "Price: $" + plugin.getConfig().getDouble("price-per-ticket"),"TicketCounter", 1, false);
+        if(currentTickets == 0){
+            inv.setItem(21, createGuiItem(Material.BARRIER, ChatColor.RESET + "" + ChatColor.GREEN + "Current Tickets: " + ChatColor.WHITE + currentTickets, "CurrentTickets", 1, false));
+        }else{
+            inv.setItem(21, createGuiItem(Material.PAPER, "Current Tickets: " + currentTickets, "CurrentTickets", currentTickets, true));
+        }
+        inv.setItem(24, createGuiItem(Material.BOOK, ChatColor.RESET + "" + ChatColor.AQUA + "Max Purchasable Tickets: " + ChatColor.WHITE + (maxTickets - currentTickets), "MaxTickets", (maxTickets - currentTickets), true));
+        inv.setItem(43, createGuiItem(Material.REDSTONE_BLOCK, ChatColor.RESET + "" +ChatColor.RED + "CANCEL", "cancel", 1, false));
+        inv.setItem(44, createGuiItem(Material.EMERALD_BLOCK, ChatColor.RESET + "" + ChatColor.GREEN + "PURCHASE TICKETS", "purchase", 1, false));
     }
 }

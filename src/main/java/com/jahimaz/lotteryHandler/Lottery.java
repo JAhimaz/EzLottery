@@ -59,4 +59,8 @@ public class Lottery {
     public int getPlayerTickets(String playerDisplayName){
         return LotteryMechanics.countPlayerTickets(playerDisplayName, tickets);
     }
+
+    public Lottery saveLottery(){
+        return this;
+    }
 }

@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="24b65ad8-b29f-4658-acb0-de3c2f60a214" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/EZLottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/EZLottery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/dataHandler/JoinLotteryInv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/dataHandler/JoinLotteryInv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/lotteryHandler/Lottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/lotteryHandler/Lottery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT-shaded.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT-shaded.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Lottery-1.0-SNAPSHOT.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/dataHandler/JoinLotteryInv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/dataHandler/JoinLotteryInv.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/original-Lottery-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-Lottery-1.0-SNAPSHOT.jar" afterDir="false" />
@@ -97,7 +97,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1588053930831</updated>
-      <workItem from="1588053935378" duration="23463000" />
+      <workItem from="1588053935378" duration="23495000" />
+      <workItem from="1588126200443" duration="5062000" />
     </task>
     <servers />
   </component>
@@ -109,29 +110,29 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1588055523283" />
-    <state width="938" height="82" key="GridCell.Tab.0.bottom" timestamp="1588077925866">
+    <state width="938" height="82" key="GridCell.Tab.0.bottom" timestamp="1588132598938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="82" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588077925866" />
-    <state width="938" height="82" key="GridCell.Tab.0.center" timestamp="1588077925866">
+    <state width="938" height="82" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588132598938" />
+    <state width="938" height="82" key="GridCell.Tab.0.center" timestamp="1588132598938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="82" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588077925866" />
-    <state width="938" height="82" key="GridCell.Tab.0.left" timestamp="1588077925865">
+    <state width="938" height="82" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588132598938" />
+    <state width="938" height="82" key="GridCell.Tab.0.left" timestamp="1588132598938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="82" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588077925865" />
-    <state width="938" height="82" key="GridCell.Tab.0.right" timestamp="1588077925866">
+    <state width="938" height="82" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588132598938" />
+    <state width="938" height="82" key="GridCell.Tab.0.right" timestamp="1588132598938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="938" height="82" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588077925866" />
+    <state width="938" height="82" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588132598938" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1588055559329">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1588055559329" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588077843447">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588127041748">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588077843447" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588127041748" />
   </component>
 </project>
