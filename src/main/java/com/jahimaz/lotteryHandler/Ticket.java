@@ -1,12 +1,17 @@
 package com.jahimaz.lotteryHandler;
 
+import org.bukkit.entity.Player;
+
 public class Ticket {
     int ticketNumber;
     String playerName;
+    Player player;
 
-    public Ticket(String playerName, int ticketNumber){
+    public Ticket(Player player, int ticketNumber){
         this.ticketNumber = ticketNumber;
-        this.playerName = playerName;
+        this.player = player;
+        this.playerName = player.getDisplayName();
+
     }
 
     public int getTicketNumber() {
@@ -15,5 +20,9 @@ public class Ticket {
 
     public String getPlayerName() {
         return playerName;
+    }
+
+    public Player getWinner(){
+        return player;
     }
 }

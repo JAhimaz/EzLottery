@@ -1,6 +1,6 @@
-name: EZLottery
-version: 1.0-SNAPSHOT
-main: com.jahimaz.EZLottery
+name: EzLottery
+version: 1.0.0
+main: com.jahimaz.EzLottery
 api-version: 1.13
 load: STARTUP
 authors: [ItsJustDsAW]

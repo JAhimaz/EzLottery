@@ -1,6 +1,6 @@
-name: EZLottery
+name: EzLottery
 version: ${project.version}
-main: com.jahimaz.EZLottery
+main: com.jahimaz.EzLottery
 api-version: 1.13
 load: STARTUP
 authors: [ItsJustDsAW]

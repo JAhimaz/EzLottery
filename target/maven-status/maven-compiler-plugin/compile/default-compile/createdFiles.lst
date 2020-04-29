@@ -1,7 +1,9 @@
 com\jahimaz\dataHandler\PlayerDataHandler.class
+com\jahimaz\EzLottery.class
 com\jahimaz\lotteryHandler\Lottery.class
 com\jahimaz\lotteryHandler\Ticket.class
+com\jahimaz\lotteryHandler\Lottery$1.class
 com\jahimaz\lotteryHandler\LotteryMechanics.class
 com\jahimaz\dataHandler\LotteryDataHandler.class
 com\jahimaz\dataHandler\JoinLotteryInv.class
-com\jahimaz\EZLottery.class
+com\jahimaz\EzLottery$1.class

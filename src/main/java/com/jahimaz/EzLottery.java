@@ -6,6 +6,7 @@ import com.jahimaz.lotteryHandler.LotteryMechanics;
 import com.jahimaz.lotteryHandler.Ticket;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 
-public final class EZLottery extends JavaPlugin {
+public final class EzLottery extends JavaPlugin {
 
     //Vault Related
     private static Economy econ = null;
@@ -29,13 +30,21 @@ public final class EZLottery extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        doWelcomeCheck();
-        loadConfig();
-        loadPlugins();
         if (!setupEconomy() ) {
             System.out.println(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
             return;
+        }
+        doWelcomeCheck();
+        loadConfig();
+        loadPlugins();
+        if(getConfig().getBoolean("plugin-enabled")){
+            Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable(){
+                @Override
+                public void run(){
+                    createLottery();
+                }
+            });
         }
     }
 
@@ -64,6 +73,7 @@ public final class EZLottery extends JavaPlugin {
             }
 
             /*                  PLAYER SENT COMMANDS                 */
+            // ADD PERMISSIONS
 
             if(sender instanceof Player){
                 if(args.length == 0){
@@ -73,18 +83,34 @@ public final class EZLottery extends JavaPlugin {
                     if(args[0].equalsIgnoreCase("Reload")){
                         reloadPlugin();
                     }
-                    if(args[0].equalsIgnoreCase("join")){
-                        if(currentLottery == null){
+                    if(args[0].equalsIgnoreCase("Cancel")){
+                        getConfig().set("current-lottery-number", getConfig().getInt("current-lottery-number") - 1);
+                        saveConfig();
+                        currentLottery.cancelLotteryTimer();
+                        cancelLottery();
+                        sender.sendMessage(ChatColor.GREEN + "The Lottery has successfully been cancelled!");
+                    }
+                    if(args[0].equalsIgnoreCase("Start")){
+                        if(currentLottery != null){
+                            sender.sendMessage(ChatColor.RED + "There is already a lottery in progress.");
+                        }else{
                             createLottery();
                         }
-                        int playerCurrentTickets = currentLottery.getPlayerTickets(((Player) sender).getDisplayName());
-                        if(playerCurrentTickets >= maxTickets){
-                            sender.sendMessage(ChatColor.RED + "You purchased the maximum amount of tickets");
+                    }
+                    if(args[0].equalsIgnoreCase("Join")){
+                        if(currentLottery == null){
+                            sender.sendMessage(ChatColor.RED + "There Is No Active Lottery");
                         }else{
-                            JoinLotteryInv lotteryJoin = new JoinLotteryInv(this,((Player) sender).getDisplayName(), playerCurrentTickets, maxTickets);
-                            getServer().getPluginManager().registerEvents(lotteryJoin, this);
-                            lotteryJoin.openInventory(((Player) sender).getPlayer());
+                            int playerCurrentTickets = currentLottery.getPlayerTickets(((Player) sender).getDisplayName());
+                            if(playerCurrentTickets >= maxTickets){
+                                sender.sendMessage(ChatColor.RED + "You purchased the maximum amount of tickets");
+                            }else{
+                                JoinLotteryInv lotteryJoin = new JoinLotteryInv(this,((Player) sender).getDisplayName(), playerCurrentTickets, maxTickets);
+                                getServer().getPluginManager().registerEvents(lotteryJoin, this);
+                                lotteryJoin.openInventory(((Player) sender).getPlayer());
+                            }
                         }
+
                     }
                     if(args[0].equalsIgnoreCase("debug")){
                         sender.sendMessage(ChatColor.GREEN + "=============== DEBUG =================");
@@ -92,6 +118,9 @@ public final class EZLottery extends JavaPlugin {
                             sender.sendMessage(ChatColor.RED + "No Lottery In Progress");
                         }else{
                             ArrayList<Ticket> currentTickets = currentLottery.getTickets();
+                            sender.sendMessage(ChatColor.WHITE + "LOTTERY " + ChatColor.GREEN + "#" + getConfig().getInt("current-lottery-number"));
+                            sender.sendMessage(ChatColor.WHITE + "Time Remaining: " + ChatColor.GREEN + currentLottery.getLotteryTimerString());
+                            sender.sendMessage(ChatColor.WHITE + "Current Prize Pool in Lottery: " + ChatColor.GREEN + "$" + currentLottery.getPrizePool());
                             sender.sendMessage(ChatColor.WHITE + "Current Tickets in Lottery: " + ChatColor.GREEN + currentLottery.getTicketCount());
                             sender.sendMessage(ChatColor.WHITE + "Current Participants in Lottery: " + ChatColor.GREEN + currentLottery.getParticipantsCount());
                             for(int i = 0; i < currentTickets.size(); i++){
@@ -108,7 +137,9 @@ public final class EZLottery extends JavaPlugin {
     }
 
     private void createLottery() {
-        currentLottery = new Lottery();
+        getConfig().set("current-lottery-number", getConfig().getInt("current-lottery-number") + 1);
+        saveConfig();
+        currentLottery = new Lottery(this);
     }
 
     public static void cancelLottery() {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EZLottery.iml" filepath="$PROJECT_DIR$/EZLottery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EzLottery.iml" filepath="$PROJECT_DIR$/EzLottery.iml" />
     </modules>
   </component>
 </project>

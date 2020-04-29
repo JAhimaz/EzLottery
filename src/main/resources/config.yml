@@ -7,6 +7,17 @@
 # +------------------------------------------------------+ #
 ############################################################
 
+plugin-enabled: true
+
 max-tickets: 10
 
+tax-amount: 20
+
+#Time for each Lottery, in seconds
+lottery-timer: 60
+
 price-per-ticket: 2000.00
+
+# DONT TOUCH THE BELOW, IT WILL MESS UP THE PLUGIN, THANKS! #
+current-lottery-number: 0
+# DONT TOUCH THE ABOVE, IT WILL MESS UP THE PLUGIN, THANKS! #
