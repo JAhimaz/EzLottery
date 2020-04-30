@@ -2,6 +2,7 @@ package com.jahimaz.commands;
 
 import com.jahimaz.EzLottery;
 import com.jahimaz.dataHandler.JoinLotteryInv;
+import com.jahimaz.dataHandler.LotteryDataHandler;
 import com.jahimaz.lotteryHandler.Lottery;
 import com.jahimaz.lotteryHandler.Ticket;
 import org.bukkit.ChatColor;
@@ -57,7 +58,7 @@ public class LotteryJoin implements CommandExecutor {
                             plugin.getConfig().set("current-lottery-number", plugin.getConfig().getInt("current-lottery-number") - 1);
                             plugin.saveConfig();
                             currentLottery.cancelLotteryTimer();
-                            plugin.cancelLottery();
+                            plugin.manualCancelLottery();
                             sender.sendMessage(ChatColor.GREEN + "The Lottery has successfully been cancelled!");
                         }
                     }
@@ -68,6 +69,13 @@ public class LotteryJoin implements CommandExecutor {
                             plugin.getConfig().set("current-lottery-number", plugin.getConfig().getInt("current-lottery-number") + 1);
                             plugin.saveConfig();
                             plugin.startLottery();
+                        }
+                    }
+                    if(args[0].equalsIgnoreCase("time")){
+                        if(currentLottery != null){
+                            sender.sendMessage(ChatColor.RED + "There is already a lottery in progress.");
+                        }else{
+                            sender.sendMessage(ChatColor.GOLD + "Next Lottery Will Be In " + LotteryDataHandler.timeHandler(plugin.timer));
                         }
                     }
                     if(args[0].equalsIgnoreCase("Join")){
@@ -85,7 +93,7 @@ public class LotteryJoin implements CommandExecutor {
                         }
 
                     }
-                    if(args[0].equalsIgnoreCase("debug")){
+                    if(args[0].equalsIgnoreCase("debug") && sender.hasPermission("lottery.debug")){
                         sender.sendMessage(ChatColor.GREEN + "=============== DEBUG =================");
                         if(currentLottery == null){
                             sender.sendMessage(ChatColor.RED + "No Lottery In Progress");

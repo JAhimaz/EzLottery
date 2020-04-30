@@ -8,7 +8,6 @@ com\jahimaz\events\FireworkSpawnEffect.class
 com\jahimaz\dataHandler\PlayerDataHandler.class
 com\jahimaz\EzLottery.class
 com\jahimaz\lotteryHandler\Ticket.class
-com\jahimaz\lotteryHandler\LotteryMechanics.class
 com\jahimaz\EzLottery$2.class
 com\jahimaz\dataHandler\LotteryDataHandler.class
 com\jahimaz\dataHandler\JoinLotteryInv.class

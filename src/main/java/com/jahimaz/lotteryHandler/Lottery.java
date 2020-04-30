@@ -38,7 +38,7 @@ public class Lottery {
             public void run(){
                 if(lotteryTimer == configTimer) {
                     Bukkit.broadcastMessage(ChatColor.GOLD + "A Lottery has started, Join in by doing " + ChatColor.GREEN + "/lottery join");
-                    Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(ChatColor.GOLD + "The Lottery Has Begun!",ChatColor.WHITE + "Do " + ChatColor.GREEN + "/lottery join" + ChatColor.WHITE + "To Join!",1, 5, 1));
+                    Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(ChatColor.GOLD + "The Lottery Has Begun!",ChatColor.WHITE + "Do " + ChatColor.GREEN + "/lottery join" + ChatColor.WHITE + " To Join!",20, 100, 20));
                     --lotteryTimer;
                 }else if(lotteryTimer == 30){
                     Bukkit.broadcastMessage(ChatColor.GOLD + "30 Seconds remaining before the lottery rolls a winner!");
@@ -100,7 +100,7 @@ public class Lottery {
         plugin.saveLotteryFiles();
 
         //Prize Money
-        Bukkit.broadcastMessage(ChatColor.GOLD + "The Winning Ticket Is Ticket Number " + ChatColor.GREEN + "#" + result + " Owned By " + ChatColor.WHITE + winner.getDisplayName());
+        Bukkit.broadcastMessage(ChatColor.GOLD + "The Winner of $" + prizePool + " is the Ticket Hold with the Number " + ChatColor.GREEN + "#" + result + " Owned By " + ChatColor.WHITE + winner.getDisplayName());
         if(plugin.getConfig().getBoolean("enable-tax")){
             double tax = this.prizePool * LotteryDataHandler.convertPercentageToDecimal(plugin.getConfig().getInt("tax-amount"));
             this.prizePool = prizePool - tax;

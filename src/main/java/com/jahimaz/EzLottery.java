@@ -2,6 +2,7 @@ package com.jahimaz;
 
 import com.jahimaz.commands.LotteryJoin;
 import com.jahimaz.dataHandler.LotteryDataHandler;
+import com.jahimaz.dataHandler.PlayerDataHandler;
 import com.jahimaz.economy.Economy;
 import com.jahimaz.lotteryHandler.Lottery;
 import org.bukkit.Bukkit;
@@ -9,16 +10,22 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+
 import java.io.File;
 import java.io.IOException;
 
 
 public final class EzLottery extends JavaPlugin {
 
+    int lotteryStart;
     public File lotteryConfig;
     public FileConfiguration lotteryConfiguration;
     public static int maxTickets;
     public static Lottery currentLottery;
+
+    int starttimer = 40;
+    public int timer = 40;
 
     @Override
     public void onEnable() {
@@ -71,16 +78,36 @@ public final class EzLottery extends JavaPlugin {
     }
 
     public void startLottery(){
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+        lotteryStart = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             @Override
             public void run() {
-                currentLottery = new Lottery(EzLottery.this);
+                if(timer == starttimer){
+                    --timer;
+                }else if(timer == 30){
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "30 Seconds Till Next Lottery");
+                    --timer;
+                }else if(timer == 10){
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "10 Seconds Till Next Lottery");
+                    --timer;
+                }else if(timer <= getConfig().getInt("lottery-delay") + getConfig().getInt("lottery-timer")){
+                    --timer;
+                    if(timer <= 1){
+                        currentLottery = new Lottery(EzLottery.this);
+                        timer = getConfig().getInt("lottery-delay") + getConfig().getInt("lottery-timer");
+                    }
+                }
             }
-        }, 10L, (LotteryDataHandler.convertSecondsToTicks(getConfig().getInt("lottery-timer")) + LotteryDataHandler.convertSecondsToTicks(getConfig().getInt("lottery-delay"))));
+        }, 0L, 20L);
+    }
+
+    public void manualCancelLottery(){
+        Bukkit.getScheduler().cancelTask(lotteryStart);
+        currentLottery = null;
     }
 
     public void cancelLottery() {
         currentLottery = null;
+        Bukkit.broadcastMessage("The Next Lottery Will Be In " + LotteryDataHandler.timeHandler(timer));
     }
 
     public void saveLotteryFiles() {

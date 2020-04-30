@@ -17,15 +17,15 @@ price-per-ticket: 10000.00
 #Will take a portion of the winnings and store it in a player economy account
 enable-tax: true
 #Amount in % to tax
-tax-amount: 10
+tax-amount: 20
 #Must be a player in the server (Registered atleast once)
 tax-account: "ServerBank"
 
 #How long will each lottery run before it draws a winner
-lottery-timer: 120
+lottery-timer: 600
 
 #Delay before the next Lottery
-lottery-delay: 3600
+lottery-delay: 42600
 
 # DONT TOUCH THE BELOW, IT WILL MESS UP THE PLUGIN, THANKS! #
 current-lottery-number: 0
