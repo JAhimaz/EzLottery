@@ -12,4 +12,7 @@ public class LotteryDataHandler {
         return decimal;
     }
 
+    public static double calculateChance(){
+        return 0.0;
+    }
 }

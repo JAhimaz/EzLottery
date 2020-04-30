@@ -1,7 +1,9 @@
 package com.jahimaz.dataHandler;
 
 import com.jahimaz.EzLottery;
+import com.jahimaz.economy.Economy;
 import com.jahimaz.lotteryHandler.Ticket;
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -106,8 +108,8 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
                 e.getWhoClicked().sendMessage(ChatColor.RED + "The Current Lottery Has Already Ended");
                 e.getWhoClicked().closeInventory();
             }
-            if(EzLottery.getEconomy().getBalance((Player) e.getWhoClicked()) >= (purchasingTickets * plugin.getConfig().getDouble("price-per-ticket"))){
-                EzLottery.getEconomy().withdrawPlayer((Player) e.getWhoClicked(),purchasingTickets * plugin.getConfig().getDouble("price-per-ticket"));
+            if(Economy.getEconomy().getBalance((Player) e.getWhoClicked()) >= (purchasingTickets * plugin.getConfig().getDouble("price-per-ticket"))){
+                Economy.getEconomy().withdrawPlayer((Player) e.getWhoClicked(),purchasingTickets * plugin.getConfig().getDouble("price-per-ticket"));
                 if(currentTickets == 0){
                     EzLottery.currentLottery.addParticipant();
                 }
@@ -117,6 +119,7 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
                 }
                 EzLottery.currentLottery.addToPool(purchasingTickets);
                 e.getWhoClicked().sendMessage(ChatColor.GREEN + "You Have Purchased " + purchasingTickets + " Tickets!");
+                Bukkit.broadcastMessage(ChatColor.GREEN + ((Player) e.getWhoClicked()).getDisplayName() + ChatColor.GOLD + " Has Bought " + purchasingTickets + " Tickets In The Lottery, Making The Total Prize Pool " + ChatColor.GREEN +  "$" + EzLottery.currentLottery.getPrizePool());
                 e.getWhoClicked().closeInventory();
             }else{
                 e.getWhoClicked().sendMessage(ChatColor.RED + "You Don't Have Enough Money");
@@ -144,7 +147,7 @@ public class JoinLotteryInv implements InventoryHolder, Listener {
         inv.setItem(4, createGuiItem(Material.CHEST, ChatColor.RESET + "" + ChatColor.GOLD + "Current Prize Pool: " + ChatColor.GREEN + "$" + EzLottery.currentLottery.getPrizePool(), "PrizePool", 1, true ));
         inv.setItem(3, createGuiItem(Material.CLOCK, ChatColor.RESET + "" + ChatColor.WHITE + "Time Remaining: " + ChatColor.GOLD + EzLottery.currentLottery.getLotteryTimerString(), "Timer", 1, false));
         inv.setItem(5, createGuiItem(Material.PLAYER_HEAD, ChatColor.RESET + "" + ChatColor.WHITE + "Players In Lottery: " + ChatColor.GOLD + EzLottery.currentLottery.getParticipantsCount(), "PlayerCount", 1, true));
-        inv.setItem(14, createGuiItem(Material.BOOK, ChatColor.RESET + "" + ChatColor.WHITE + "LEFT CLICK (ADD) | RIGHT CLICK (REMOVE)", "tut1", 1, false));
+        inv.setItem(14, createGuiItem(Material.BOOK, ChatColor.RESET + "" + ChatColor.GREEN + "LEFT CLICK (ADD) | RIGHT CLICK (REMOVE)" + ChatColor.WHITE + " ON THE " + ChatColor.GREEN + "NAMETAG " + ChatColor.WHITE + "TO INCREASE/DECREASE TICKETS", "tut1", 1, false));
         inv.setItem(15, createGuiItem(Material.BOOK, ChatColor.RESET + "" + ChatColor.WHITE + "MAXIMUM AMOUNT OF PURCHASABLE TICKETS", "tut2", 1, false));
         inv.setItem(12, createGuiItem(Material.BOOK, ChatColor.RESET + "" + ChatColor.WHITE + "CURRENT AMOUNT OF TICKETS", "tut3", 1, false));
         //Setup Number of tickets

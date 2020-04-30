@@ -10,3 +10,10 @@ commands:
   lottery:
     description: Launch the lottery
     aliases: [lm, lot, pot]
+permissions:
+  lottery.reload:
+    description: Reloads the lottery Plugin.
+  lottery.start:
+    description: Manually Start a lottery.
+  lottery.cancel:
+    description: Manually cancel a lottery.

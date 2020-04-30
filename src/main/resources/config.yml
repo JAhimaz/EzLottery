@@ -7,16 +7,25 @@
 # +------------------------------------------------------+ #
 ############################################################
 
+# Enable the Lottery Plugin
 plugin-enabled: true
 
+#Maximum Amount of Tickets per player
 max-tickets: 10
+price-per-ticket: 10000.00
 
-tax-amount: 20
+#Will take a portion of the winnings and store it in a player economy account
+enable-tax: true
+#Amount in % to tax
+tax-amount: 10
+#Must be a player in the server (Registered atleast once)
+tax-account: "ServerBank"
 
-#Time for each Lottery, in seconds
-lottery-timer: 60
+#How long will each lottery run before it draws a winner
+lottery-timer: 120
 
-price-per-ticket: 2000.00
+#Delay before the next Lottery
+lottery-delay: 3600
 
 # DONT TOUCH THE BELOW, IT WILL MESS UP THE PLUGIN, THANKS! #
 current-lottery-number: 0

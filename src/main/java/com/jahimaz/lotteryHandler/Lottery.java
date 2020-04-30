@@ -3,27 +3,23 @@ package com.jahimaz.lotteryHandler;
 import com.jahimaz.EzLottery;
 import com.jahimaz.dataHandler.LotteryDataHandler;
 import com.jahimaz.dataHandler.PlayerDataHandler;
+import com.jahimaz.economy.Economy;
+import com.jahimaz.events.FireworkSpawnEffect;
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
 public class Lottery {
     EzLottery plugin;
 
-    int lotteryTimerTask;
-
-    int configTimer;
-    int lotteryTimer;
-    int lotteryNumber;
-    int participantsCount;
+    int lotteryTimerTask, configTimer, lotteryTimer, lotteryNumber, participantsCount, winningTicket;
     ArrayList<Ticket> tickets = new ArrayList<Ticket>();
     double prizePool;
-    String winningPlayer, winningTicket;
 
     //Constructor Class
     public Lottery(EzLottery instance){
@@ -40,7 +36,15 @@ public class Lottery {
         lotteryTimerTask = Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run(){
-                if(lotteryTimer == configTimer){
+                if(lotteryTimer == configTimer) {
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "A Lottery has started, Join in by doing " + ChatColor.GREEN + "/lottery join");
+                    Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(ChatColor.GOLD + "The Lottery Has Begun!",ChatColor.WHITE + "Do " + ChatColor.GREEN + "/lottery join" + ChatColor.WHITE + "To Join!",1, 5, 1));
+                    --lotteryTimer;
+                }else if(lotteryTimer == 30){
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "30 Seconds remaining before the lottery rolls a winner!");
+                    --lotteryTimer;
+                }else if(lotteryTimer == 10){
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "10 Seconds remaining before the lottery rolls a winner!");
                     --lotteryTimer;
                 }else if(lotteryTimer < configTimer) {
                     if(lotteryTimer <= 1){
@@ -56,10 +60,13 @@ public class Lottery {
         Bukkit.getScheduler().cancelTask(lotteryTimerTask);
         if(participantsCount != 0){
             drawWinner();
+        }else if(participantsCount == 1) {
+            Bukkit.broadcastMessage(ChatColor.RED + "Only one player participated, the money has been given back.");
+            Economy.getEconomy().depositPlayer(tickets.get(0).getWinner(), prizePool);
         }else{
-            Bukkit.broadcastMessage("Nigger");
+            Bukkit.broadcastMessage(ChatColor.RED + "Nobody has participated in the Lottery, hence it is cancelled.");
         }
-        EzLottery.cancelLottery();
+        plugin.cancelLottery();
     }
 
     private void drawWinner(){
@@ -75,6 +82,8 @@ public class Lottery {
         int high = Collections.max(ticketNumbers);
 
         int result = r.nextInt(high-low) + low;
+        this.winningTicket = result;
+
         Player winner = null;
 
         for (int i = 0; i < tickets.size(); i++){
@@ -82,14 +91,28 @@ public class Lottery {
                 winner = tickets.get(i).getWinner();
             }
         }
+        //Save to Config
+        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".lottery-number", lotteryNumber);
+        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".winning-ticket", winningTicket);
+        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".winning-player", winner.getDisplayName());
+        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".number-of-participants", participantsCount);
+        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".prize-pool", prizePool);
+        plugin.saveLotteryFiles();
 
-        double tax = this.prizePool * LotteryDataHandler.convertPercentageToDecimal(plugin.getConfig().getInt("tax-amount"));
-        this.prizePool = prizePool - tax;
-
+        //Prize Money
         Bukkit.broadcastMessage(ChatColor.GOLD + "The Winning Ticket Is Ticket Number " + ChatColor.GREEN + "#" + result + " Owned By " + ChatColor.WHITE + winner.getDisplayName());
-        EzLottery.getEconomy().depositPlayer(winner, prizePool);
-        EzLottery.getEconomy().bankDeposit("ServerBank", tax);
-        winner.sendMessage(ChatColor.GOLD + "Congratulations You Won The Lottery! Your Winnings: " + ChatColor.GREEN + "$" + prizePool + ChatColor.DARK_GREEN + " (Taxed: $" + tax + ")" );
+        if(plugin.getConfig().getBoolean("enable-tax")){
+            double tax = this.prizePool * LotteryDataHandler.convertPercentageToDecimal(plugin.getConfig().getInt("tax-amount"));
+            this.prizePool = prizePool - tax;
+            Economy.getEconomy().bankDeposit("ServerBank", tax);
+            winner.sendMessage(ChatColor.GOLD + "Congratulations You Won The Lottery! Your Winnings: " + ChatColor.GREEN + "$" + prizePool + ChatColor.DARK_GREEN + " (Taxed: $" + tax + ")" );
+        }else{
+            winner.sendMessage(ChatColor.GOLD + "Congratulations You Won The Lottery! Your Winnings: " + ChatColor.GREEN + "$" + prizePool);
+        }
+
+        Economy.getEconomy().depositPlayer(winner, prizePool);
+        FireworkSpawnEffect.createFirework(winner, winner.getLocation(), true, true, "Orange", "Yellow", 2);
+        FireworkSpawnEffect.createFirework(winner, winner.getLocation(), true, true, "Orange", "Yellow", 2);
     }
 
     public void cancelLotteryTimer(){
@@ -141,12 +164,8 @@ public class Lottery {
         return participantsCount;
     }
 
-    public String getWinningTicket() {
+    public int getWinningTicket() {
         return winningTicket;
-    }
-
-    public String getWinningPlayer() {
-        return winningPlayer;
     }
 
     public double getPrizePool() {
