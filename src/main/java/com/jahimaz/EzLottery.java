@@ -1,8 +1,7 @@
 package com.jahimaz;
 
-import com.jahimaz.commands.LotteryJoin;
+import com.jahimaz.commands.LotteryCommands;
 import com.jahimaz.dataHandler.LotteryDataHandler;
-import com.jahimaz.dataHandler.PlayerDataHandler;
 import com.jahimaz.economy.Economy;
 import com.jahimaz.lotteryHandler.Lottery;
 import org.bukkit.Bukkit;
@@ -10,7 +9,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,10 +32,7 @@ public final class EzLottery extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        doWelcomeMessage();
-        maxTickets = getConfig().getInt("max-tickets");
-        loadConfig();
-        loadPlugins();
+        doStartup();
         if(getConfig().getBoolean("plugin-enabled")){
             Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable(){
                 @Override
@@ -48,20 +43,23 @@ public final class EzLottery extends JavaPlugin {
         }
     }
 
-    private void doWelcomeMessage() {
-        System.out.println("====================================");
-        System.out.println(ChatColor.GOLD + "Lottery Plugin Enabled");
-        System.out.println("====================================");
-    }
-
     @Override
     public void onDisable() {
         System.out.println("Shutting Down Lottery Plugin");
         saveLotteryFiles();
     }
 
-    private void loadPlugins(){
-        this.getCommand("lottery").setExecutor(new LotteryJoin(this));
+    private void loadCommands(){
+        this.getCommand("lottery").setExecutor(new LotteryCommands(this));
+    }
+
+    private void doStartup() {
+        System.out.println("====================================");
+        System.out.println(ChatColor.GOLD + "Lottery Plugin Enabled");
+        System.out.println("====================================");
+        maxTickets = getConfig().getInt("max-tickets");
+        loadConfig();
+        loadCommands();
     }
 
 

@@ -91,12 +91,19 @@ public class Lottery {
                 winner = tickets.get(i).getWinner();
             }
         }
+
+        ArrayList<Ticket> winnersTickets = new ArrayList<Ticket>();
+        for(Ticket ticket : tickets){ if(ticket.getPlayerName().equals(winner.getDisplayName())) winnersTickets.add(ticket);}
+
         //Save to Config
-        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".lottery-number", lotteryNumber);
-        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".winning-ticket", winningTicket);
-        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".winning-player", winner.getDisplayName());
-        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".number-of-participants", participantsCount);
-        plugin.lotteryConfiguration.set("Lottery-#" + lotteryNumber + ".prize-pool", prizePool);
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".lottery-number", lotteryNumber);
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".winning-player", winner.getDisplayName());
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".winning-player.UUID", winner.getUniqueId());
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".prize-pool", prizePool);
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".winning-ticket", winningTicket);
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".number-of-participants", participantsCount);
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".number-of-tickets-owned", winnersTickets.size());
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".total-number-of-tickets", tickets.size());
         plugin.saveLotteryFiles();
 
         //Prize Money

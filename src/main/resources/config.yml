@@ -3,7 +3,6 @@
 ############################################################
 # +------------------------------------------------------+ #
 # |                     = EZLOTTERY =                    | #
-# |                     VERSION 1.0.0                    | #
 # +------------------------------------------------------+ #
 ############################################################
 
@@ -29,4 +28,5 @@ lottery-delay: 42600
 
 # DONT TOUCH THE BELOW, IT WILL MESS UP THE PLUGIN, THANKS! #
 current-lottery-number: 0
+plugin-version: 1.0.0
 # DONT TOUCH THE ABOVE, IT WILL MESS UP THE PLUGIN, THANKS! #

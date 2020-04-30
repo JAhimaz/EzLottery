@@ -4,25 +4,9 @@
     <list default="true" id="24b65ad8-b29f-4658-acb0-de3c2f60a214" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/EzLottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/EzLottery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/commands/LotteryJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/commands/LotteryJoin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/dataHandler/LotteryDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/dataHandler/LotteryDataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/commands/LotteryJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/commands/LotteryCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/lotteryHandler/Lottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/lotteryHandler/Lottery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/EzLottery-1.0.0-shaded.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/EzLottery-1.0.0-shaded.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/EzLottery-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/EzLottery-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EzLottery$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EzLottery$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EzLottery$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EzLottery$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/commands/LotteryJoin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/commands/LotteryJoin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/dataHandler/JoinLotteryInv.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/dataHandler/JoinLotteryInv.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/dataHandler/LotteryDataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/dataHandler/LotteryDataHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/lotteryHandler/Lottery$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/lotteryHandler/Lottery$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/lotteryHandler/Lottery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/lotteryHandler/Lottery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/lotteryHandler/LotteryMechanics.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-EzLottery-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-EzLottery-1.0.0.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +110,9 @@
       <workItem from="1588163341020" duration="4440000" />
       <workItem from="1588218792049" duration="6220000" />
       <workItem from="1588227817716" duration="10407000" />
+      <workItem from="1588245554062" duration="17000" />
+      <workItem from="1588246635549" duration="378000" />
+      <workItem from="1588251727642" duration="2248000" />
     </task>
     <servers />
   </component>
@@ -165,25 +152,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1588055559329" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1588228073878">
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1588251745935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588228073878" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588251745935" />
     <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588225863621">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588225863621" />
-    <state x="342" y="189" key="new project wizard" timestamp="1588236351988">
+    <state x="342" y="189" key="new project wizard" timestamp="1588245568536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="342" y="189" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1588236351988" />
+    <state x="342" y="189" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1588245568536" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1588148742827">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588148742827" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588231147694">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588253545529">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588231147694" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1588253545529" />
   </component>
 </project>
