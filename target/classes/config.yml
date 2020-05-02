@@ -14,7 +14,7 @@ max-tickets: 10
 price-per-ticket: 10000.00
 
 #Will take a portion of the winnings and store it in a player economy account
-enable-tax: true
+enable-tax: false
 #Amount in % to tax
 tax-amount: 20
 #Must be a player in the server (Registered atleast once)
@@ -27,3 +27,5 @@ first-lottery-timer: 30
 lottery-timer: 600
 #Delay before the next Lottery
 lottery-delay: 21000
+
+# Open Source - Credit Must Be Mentioned

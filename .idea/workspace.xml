@@ -3,22 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="24b65ad8-b29f-4658-acb0-de3c2f60a214" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/EzLottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/EzLottery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/commands/LotteryCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/commands/LotteryCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/dataHandler/JoinLotteryInv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/dataHandler/JoinLotteryInv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/lotteryHandler/Lottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/lotteryHandler/Lottery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EzLottery$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EzLottery$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EzLottery$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EzLottery$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/commands/LotteryJoin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/lotteryHandler/Lottery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/lotteryHandler/Lottery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/EzLottery-1.1.0-shaded.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/EzLottery-1.1.0-shaded.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/EzLottery-1.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/EzLottery-1.1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/commands/LotteryCommands.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/commands/LotteryCommands.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-EzLottery-1.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-EzLottery-1.1.0.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +120,7 @@
       <workItem from="1588246635549" duration="378000" />
       <workItem from="1588251727642" duration="2248000" />
       <workItem from="1588304596082" duration="13237000" />
-      <workItem from="1588398559849" duration="1158000" />
+      <workItem from="1588398559849" duration="2109000" />
     </task>
     <servers />
   </component>
@@ -149,22 +140,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="735" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1588158554569" />
-    <state width="1877" height="64" key="GridCell.Tab.0.bottom" timestamp="1588399724026">
+    <state width="1877" height="64" key="GridCell.Tab.0.bottom" timestamp="1588401312276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="64" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588399724026" />
-    <state width="1877" height="64" key="GridCell.Tab.0.center" timestamp="1588399724026">
+    <state width="1877" height="64" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588401312276" />
+    <state width="1877" height="64" key="GridCell.Tab.0.center" timestamp="1588401312276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="64" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588399724026" />
-    <state width="1877" height="64" key="GridCell.Tab.0.left" timestamp="1588399724026">
+    <state width="1877" height="64" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588401312276" />
+    <state width="1877" height="64" key="GridCell.Tab.0.left" timestamp="1588401312275">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="64" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588399724026" />
-    <state width="1877" height="64" key="GridCell.Tab.0.right" timestamp="1588399724026">
+    <state width="1877" height="64" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588401312275" />
+    <state width="1877" height="64" key="GridCell.Tab.0.right" timestamp="1588401312276">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="64" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588399724026" />
+    <state width="1877" height="64" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588401312276" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1588055559329">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

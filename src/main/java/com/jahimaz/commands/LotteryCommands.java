@@ -40,7 +40,7 @@ public class LotteryCommands implements CommandExecutor {
                 }
                 if(args[0].equalsIgnoreCase("time")){
                     if(currentLottery != null){
-                        System.out.println(ChatColor.GOLD + "The Lotter Will End In " + LotteryDataHandler.timeHandler(currentLottery.getLotteryTimer()));
+                        System.out.println(ChatColor.GOLD + "The Lottery Will End In " + LotteryDataHandler.timeHandler(currentLottery.getLotteryTimer()));
                     }else{
                         System.out.println(ChatColor.GOLD + "Next Lottery Will Be In " + LotteryDataHandler.timeHandler(plugin.timer));
                     }
@@ -85,7 +85,7 @@ public class LotteryCommands implements CommandExecutor {
                             sender.sendMessage(ChatColor.GOLD + "Next Lottery Will Be In " + LotteryDataHandler.timeHandler(plugin.timer));
                         }
                     }
-                    if(args[0].equalsIgnoreCase("Join")){
+                    if(args[0].equalsIgnoreCase("Join") || args[0].equalsIgnoreCase("Buy") || args[0].equalsIgnoreCase("Play")){
                         if(currentLottery == null){
                             sender.sendMessage(ChatColor.RED + "There Is No Active Lottery");
                         }else{
