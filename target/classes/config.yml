@@ -3,7 +3,6 @@
 ############################################################
 # +------------------------------------------------------+ #
 # |                     = EZLOTTERY =                    | #
-# |                     VERSION 1.0.0                    | #
 # +------------------------------------------------------+ #
 ############################################################
 
@@ -21,12 +20,10 @@ tax-amount: 20
 #Must be a player in the server (Registered atleast once)
 tax-account: "ServerBank"
 
+# ================ All values are represented in Seconds ==========================
+#Initial Lottery (When you startup the server, how long before the first Lottery)
+first-lottery-timer: 30
 #How long will each lottery run before it draws a winner
 lottery-timer: 600
-
 #Delay before the next Lottery
-lottery-delay: 42600
-
-# DONT TOUCH THE BELOW, IT WILL MESS UP THE PLUGIN, THANKS! #
-current-lottery-number: 0
-# DONT TOUCH THE ABOVE, IT WILL MESS UP THE PLUGIN, THANKS! #
+lottery-delay: 21000

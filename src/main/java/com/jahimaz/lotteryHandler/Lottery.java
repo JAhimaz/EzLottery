@@ -5,13 +5,16 @@ import com.jahimaz.dataHandler.LotteryDataHandler;
 import com.jahimaz.dataHandler.PlayerDataHandler;
 import com.jahimaz.economy.Economy;
 import com.jahimaz.events.FireworkSpawnEffect;
-import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.Random;
 
 public class Lottery {
@@ -24,7 +27,7 @@ public class Lottery {
     //Constructor Class
     public Lottery(EzLottery instance){
         this.plugin = instance;
-        this.lotteryNumber = plugin.getConfig().getInt("lottery-number");
+        this.lotteryNumber = plugin.lotteryConfiguration.getInt("current-lottery");
         this.participantsCount = 0;
         this.prizePool = 0.0;
         configTimer = plugin.getConfig().getInt("lottery-timer");
@@ -58,13 +61,17 @@ public class Lottery {
 
     private void endLottery(){
         Bukkit.getScheduler().cancelTask(lotteryTimerTask);
-        if(participantsCount != 0){
-            drawWinner();
-        }else if(participantsCount == 1) {
+        if(participantsCount == 1) {
             Bukkit.broadcastMessage(ChatColor.RED + "Only one player participated, the money has been given back.");
             Economy.getEconomy().depositPlayer(tickets.get(0).getWinner(), prizePool);
+            plugin.lotteryConfiguration.set("current-lottery", plugin.lotteryConfiguration.getInt("current-lottery") - 1);
+            plugin.saveLotteryFiles();
+        }else if(participantsCount > 1){
+            drawWinner();
         }else{
             Bukkit.broadcastMessage(ChatColor.RED + "Nobody has participated in the Lottery, hence it is cancelled.");
+            plugin.lotteryConfiguration.set("current-lottery", plugin.lotteryConfiguration.getInt("current-lottery") - 1);
+            plugin.saveLotteryFiles();
         }
         plugin.cancelLottery();
     }
@@ -95,18 +102,25 @@ public class Lottery {
         ArrayList<Ticket> winnersTickets = new ArrayList<Ticket>();
         for(Ticket ticket : tickets){ if(ticket.getPlayerName().equals(winner.getDisplayName())) winnersTickets.add(ticket);}
 
+        Date date = GregorianCalendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
         //Save to Config
         plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".lottery-number", lotteryNumber);
         plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".winning-player", winner.getDisplayName());
-        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".winning-player.UUID", winner.getUniqueId());
         plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".prize-pool", prizePool);
         plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".winning-ticket", winningTicket);
         plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".number-of-participants", participantsCount);
         plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".number-of-tickets-owned", winnersTickets.size());
         plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".total-number-of-tickets", tickets.size());
+        plugin.lotteryConfiguration.set("Lottery#" + lotteryNumber + ".lottery-time", sdf.format(date));
         plugin.saveLotteryFiles();
 
         //Prize Money
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            player.playSound(player.getLocation(), Sound.BLOCK_BELL_USE, 1.2f, 1.0f);
+        }
         Bukkit.broadcastMessage(ChatColor.GOLD + "The Winner of $" + prizePool + " is the Ticket Hold with the Number " + ChatColor.GREEN + "#" + result + " Owned By " + ChatColor.WHITE + winner.getDisplayName());
         if(plugin.getConfig().getBoolean("enable-tax")){
             double tax = this.prizePool * LotteryDataHandler.convertPercentageToDecimal(plugin.getConfig().getInt("tax-amount"));

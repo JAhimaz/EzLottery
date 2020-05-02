@@ -3,7 +3,6 @@ package com.jahimaz.dataHandler;
 import com.jahimaz.EzLottery;
 import com.jahimaz.economy.Economy;
 import com.jahimaz.lotteryHandler.Ticket;
-import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

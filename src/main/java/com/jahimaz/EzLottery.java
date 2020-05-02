@@ -4,6 +4,7 @@ import com.jahimaz.commands.LotteryCommands;
 import com.jahimaz.dataHandler.LotteryDataHandler;
 import com.jahimaz.economy.Economy;
 import com.jahimaz.lotteryHandler.Lottery;
+import com.jahimaz.placeholderAPI.lotteryPlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -45,6 +46,9 @@ public final class EzLottery extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if(currentLottery != null){
+            lotteryConfiguration.set("current-lottery", lotteryConfiguration.getInt("current-lottery") - 1);
+        }
         System.out.println("Shutting Down Lottery Plugin");
         saveLotteryFiles();
     }
@@ -56,10 +60,14 @@ public final class EzLottery extends JavaPlugin {
     private void doStartup() {
         System.out.println("====================================");
         System.out.println(ChatColor.GOLD + "Lottery Plugin Enabled");
+        System.out.println(ChatColor.GOLD + "Version: " + ChatColor.GREEN + this.getDescription().getVersion());
         System.out.println("====================================");
         maxTickets = getConfig().getInt("max-tickets");
         loadConfig();
         loadCommands();
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){
+            new lotteryPlaceholderExpansion(this).register();
+        }
     }
 
 
@@ -90,6 +98,8 @@ public final class EzLottery extends JavaPlugin {
                 }else if(timer <= getConfig().getInt("lottery-delay") + getConfig().getInt("lottery-timer")){
                     --timer;
                     if(timer <= 1){
+                        lotteryConfiguration.set("current-lottery", lotteryConfiguration.getInt("current-lottery") + 1);
+                        saveLotteryFiles();
                         currentLottery = new Lottery(EzLottery.this);
                         timer = getConfig().getInt("lottery-delay") + getConfig().getInt("lottery-timer");
                     }
