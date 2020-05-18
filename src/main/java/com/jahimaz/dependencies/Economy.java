@@ -1,4 +1,4 @@
-package com.jahimaz.economy;
+package com.jahimaz.dependencies;
 
 import org.bukkit.plugin.RegisteredServiceProvider;
 

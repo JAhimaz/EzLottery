@@ -3,7 +3,9 @@ package com.jahimaz.commands;
 import com.jahimaz.EzLottery;
 import com.jahimaz.dataHandler.JoinLotteryInv;
 import com.jahimaz.dataHandler.LotteryDataHandler;
+import com.jahimaz.dataHandler.PlayerDataHandler;
 import com.jahimaz.lotteryHandler.Ticket;
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -62,19 +64,31 @@ public class LotteryCommands implements CommandExecutor {
                         if(currentLottery == null){
                             sender.sendMessage(ChatColor.RED + "There is no lottery in progress.");
                         }else{
-                            plugin.getConfig().set("current-lottery-number", plugin.getConfig().getInt("current-lottery-number") - 1);
-                            plugin.saveConfig();
+                            plugin.lotteryConfiguration.set("current-lottery", plugin.lotteryConfiguration.getInt("current-lottery") - 1);
+                            plugin.saveLotteryFiles();
                             currentLottery.cancelLotteryTimer();
                             plugin.manualCancelLottery();
                             sender.sendMessage(ChatColor.GREEN + "The Lottery has successfully been cancelled!");
+                        }
+                    }
+                    if(args[0].equalsIgnoreCase("tickets")){
+                        if(currentLottery == null){
+                            sender.sendMessage(ChatColor.RED + "There is no lottery in progress.");
+                        }else{
+                            ArrayList<Ticket> tickets = PlayerDataHandler.getPlayerTickets(((Player) sender).getDisplayName(), currentLottery.getTickets());
+                            sender.sendMessage(ChatColor.WHITE + "Your Purchased Tickets Numbers: ");
+                            for(int i = 0; i < tickets.size(); i++){
+                                sender.sendMessage(ChatColor.WHITE + "#" + tickets.get(i).getTicketNumber());
+                            }
+                            sender.sendMessage(ChatColor.WHITE + "====================================");
                         }
                     }
                     if(args[0].equalsIgnoreCase("Start") && sender.hasPermission("lottery.start")){
                         if(currentLottery != null){
                             sender.sendMessage(ChatColor.RED + "There is already a lottery in progress.");
                         }else{
-                            plugin.getConfig().set("current-lottery-number", plugin.getConfig().getInt("current-lottery-number") + 1);
-                            plugin.saveConfig();
+                            plugin.lotteryConfiguration.set("current-lottery", plugin.lotteryConfiguration.getInt("current-lottery") + 1);
+                            plugin.saveLotteryFiles();
                             plugin.startLottery();
                         }
                     }
@@ -116,6 +130,17 @@ public class LotteryCommands implements CommandExecutor {
                             }
                         }
                         sender.sendMessage(ChatColor.GREEN + "=============== DEBUG =================");
+                    }
+                }
+                if(args.length == 2){
+                    if(args[0].equalsIgnoreCase("add") && sender.hasPermission("lottery.pool")){
+                        try{
+                            int increasePool = Integer.parseInt(args[1]);
+                            sender.sendMessage(ChatColor.GREEN + "You've Added $" + increasePool + " To The Lottery Pool");
+                            currentLottery.addMoneyToPool(increasePool);
+                        }catch(NumberFormatException e){
+                            sender.sendMessage(ChatColor.RED + args[1] + " Is not a valid amount");
+                        }
                     }
                 }
             }

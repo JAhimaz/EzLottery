@@ -27,5 +27,10 @@ first-lottery-timer: 30
 lottery-timer: 600
 #Delay before the next Lottery
 lottery-delay: 21000
+# ==================================================================================
+
+# Win Sound Settings
+
+# Firework Settings
 
 # Open Source - Credit Must Be Mentioned

@@ -3,7 +3,7 @@ package com.jahimaz.lotteryHandler;
 import com.jahimaz.EzLottery;
 import com.jahimaz.dataHandler.LotteryDataHandler;
 import com.jahimaz.dataHandler.PlayerDataHandler;
-import com.jahimaz.economy.Economy;
+import com.jahimaz.dependencies.Economy;
 import com.jahimaz.events.FireworkSpawnEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -153,6 +153,10 @@ public class Lottery {
     public void addToPool(int purchasedTickets){
         double moneyToPool = purchasedTickets * plugin.getConfig().getDouble("price-per-ticket");
         prizePool += moneyToPool;
+    }
+
+    public void addMoneyToPool(int amount){
+        prizePool += amount;
     }
 
     //Getters

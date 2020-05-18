@@ -1,14 +1,14 @@
-package com.jahimaz.placeholderAPI;
+package com.jahimaz.dependencies;
 
 import com.jahimaz.EzLottery;
 import org.bukkit.OfflinePlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
-public class lotteryPlaceholderExpansion extends PlaceholderExpansion {
+public class LotteryPlaceholderExpansion extends PlaceholderExpansion {
 
     EzLottery plugin;
 
-    public lotteryPlaceholderExpansion(EzLottery plugin){
+    public LotteryPlaceholderExpansion(EzLottery plugin){
         this.plugin = plugin;
     }
 

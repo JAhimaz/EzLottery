@@ -2,9 +2,9 @@ package com.jahimaz;
 
 import com.jahimaz.commands.LotteryCommands;
 import com.jahimaz.dataHandler.LotteryDataHandler;
-import com.jahimaz.economy.Economy;
+import com.jahimaz.dependencies.Economy;
 import com.jahimaz.lotteryHandler.Lottery;
-import com.jahimaz.placeholderAPI.lotteryPlaceholderExpansion;
+import com.jahimaz.dependencies.LotteryPlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -66,7 +66,7 @@ public final class EzLottery extends JavaPlugin {
         loadConfig();
         loadCommands();
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){
-            new lotteryPlaceholderExpansion(this).register();
+            new LotteryPlaceholderExpansion(this).register();
         }
     }
 

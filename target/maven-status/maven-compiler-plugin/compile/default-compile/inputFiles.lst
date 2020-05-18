@@ -2,10 +2,10 @@ D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\events\FireworkSpa
 D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\lotteryHandler\Lottery.java
 D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\lotteryHandler\Ticket.java
 D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\Misc.java
-D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\placeholderAPI\lotteryPlaceholderExpansion.java
+D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\dependencies\LotteryPlaceholderExpansion.java
 D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\dataHandler\LotteryDataHandler.java
 D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\commands\LotteryCommands.java
+D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\dependencies\Economy.java
 D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\EzLottery.java
 D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\dataHandler\PlayerDataHandler.java
 D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\dataHandler\JoinLotteryInv.java
-D:\Projects\SpigotPlugins\EzLottery\src\main\java\com\jahimaz\economy\Economy.java
