@@ -1,6 +1,7 @@
 package com.jahimaz.lotteryHandler;
 
 import com.jahimaz.EzLottery;
+import com.jahimaz.Misc;
 import com.jahimaz.dataHandler.LotteryDataHandler;
 import com.jahimaz.dataHandler.PlayerDataHandler;
 import com.jahimaz.dependencies.Economy;
@@ -8,6 +9,7 @@ import com.jahimaz.events.FireworkSpawnEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.Date;
@@ -19,6 +21,7 @@ import java.util.Random;
 
 public class Lottery {
     EzLottery plugin;
+    FileConfiguration config;
 
     int lotteryTimerTask, configTimer, lotteryTimer, lotteryNumber, participantsCount, winningTicket;
     ArrayList<Ticket> tickets = new ArrayList<Ticket>();
@@ -30,7 +33,8 @@ public class Lottery {
         this.lotteryNumber = plugin.lotteryConfiguration.getInt("current-lottery");
         this.participantsCount = 0;
         this.prizePool = 0.0;
-        configTimer = plugin.getConfig().getInt("lottery-timer");
+        config = plugin.getConfig();
+        configTimer = config.getInt("lottery-timer");
         lotteryTimer = configTimer;
         runLottery();
     }
@@ -117,13 +121,9 @@ public class Lottery {
         plugin.saveLotteryFiles();
 
         //Prize Money
-        for (Player player : Bukkit.getOnlinePlayers())
-        {
-            player.playSound(player.getLocation(), Sound.BLOCK_BELL_USE, 1.2f, 1.0f);
-        }
         Bukkit.broadcastMessage(ChatColor.GOLD + "The Winner of $" + prizePool + " is the Ticket Hold with the Number " + ChatColor.GREEN + "#" + result + " Owned By " + ChatColor.WHITE + winner.getDisplayName());
-        if(plugin.getConfig().getBoolean("enable-tax")){
-            double tax = this.prizePool * LotteryDataHandler.convertPercentageToDecimal(plugin.getConfig().getInt("tax-amount"));
+        if(config.getBoolean("enable-tax")){
+            double tax = this.prizePool * LotteryDataHandler.convertPercentageToDecimal(config.getInt("tax-amount"));
             this.prizePool = prizePool - tax;
             Economy.getEconomy().bankDeposit("ServerBank", tax);
             winner.sendMessage(ChatColor.GOLD + "Congratulations You Won The Lottery! Your Winnings: " + ChatColor.GREEN + "$" + prizePool + ChatColor.DARK_GREEN + " (Taxed: $" + tax + ")" );
@@ -132,8 +132,33 @@ public class Lottery {
         }
 
         Economy.getEconomy().depositPlayer(winner, prizePool);
-        FireworkSpawnEffect.createFirework(winner, winner.getLocation(), true, true, "Orange", "Yellow", 2);
-        FireworkSpawnEffect.createFirework(winner, winner.getLocation(), true, true, "Orange", "Yellow", 2);
+
+
+        //Sound Settings
+        boolean winSoundEnabled = config.getBoolean("enable-win-sound");
+
+        if(winSoundEnabled){
+            for (Player player : Bukkit.getOnlinePlayers())
+            {
+                player.playSound(player.getLocation(), Sound.BLOCK_BELL_USE, 1.2f, 1.0f);
+            }
+        }
+
+        //Firework Settings
+        boolean fireworksEnabled = config.getBoolean("enable-fireworks");
+        int numberOfFireworks = config.getInt("number-of-fireworks");
+        //Firework Options
+        boolean fireworkFlicker = config.getBoolean("enable-firework-flicker");
+        boolean fireworkTrail = config.getBoolean("enable-firework-trail");
+        String fireworkMainColour = config.getString("firework-main-colour");
+        String fireworkFadeColour = config.getString("firework-fade-colour");
+        int fireworkPower = config.getInt("firework-power");
+
+        if(fireworksEnabled){
+            for(int i = 1; i <= numberOfFireworks; i++){
+                FireworkSpawnEffect.createFirework(winner, winner.getLocation(), fireworkFlicker, fireworkTrail, fireworkMainColour, fireworkFadeColour, fireworkPower);
+            }
+        }
     }
 
     public void cancelLotteryTimer(){
@@ -151,7 +176,7 @@ public class Lottery {
     }
 
     public void addToPool(int purchasedTickets){
-        double moneyToPool = purchasedTickets * plugin.getConfig().getDouble("price-per-ticket");
+        double moneyToPool = purchasedTickets * config.getDouble("price-per-ticket");
         prizePool += moneyToPool;
     }
 

@@ -50,9 +50,10 @@ public class LotteryPlaceholderExpansion extends PlaceholderExpansion {
 
         String winningPlayerName = plugin.lotteryConfiguration.getString(latestLottery + ".winning-player");
         int lotteryNumber = plugin.lotteryConfiguration.getInt(latestLottery + ".lottery-number");
-        int totalTickets = plugin.lotteryConfiguration.getInt(latestLottery + ".total-number-of-tickets");;
-        int participantCount = plugin.lotteryConfiguration.getInt(latestLottery + ".number-of-participants");;
-        double prizePool = plugin.lotteryConfiguration.getDouble(latestLottery + ".prize-pool");;
+        int totalTickets = plugin.lotteryConfiguration.getInt(latestLottery + ".total-number-of-tickets");
+        int participantCount = plugin.lotteryConfiguration.getInt(latestLottery + ".number-of-participants");
+        double prizePool = plugin.lotteryConfiguration.getDouble(latestLottery + ".prize-pool");
+        String lotteryTiming = plugin.lotteryConfiguration.getString(latestLottery + ".lottery-time");
 
         if(player == null){ return ""; }
 
@@ -65,6 +66,8 @@ public class LotteryPlaceholderExpansion extends PlaceholderExpansion {
         if(identifier.equals("latest_totaltickets")){ return Integer.toString(totalTickets); }
 
         if(identifier.equals("latest_participant_count")){ return Integer.toString(participantCount); }
+
+        if(identifier.equals("latest_lottery_time")){ return lotteryTiming; }
 
         return null;
     }

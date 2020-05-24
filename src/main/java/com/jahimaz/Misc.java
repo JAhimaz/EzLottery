@@ -22,7 +22,7 @@ public class Misc {
         if (temp.equalsIgnoreCase("TEAL")) return Color.TEAL;
         if (temp.equalsIgnoreCase("WHITE")) return Color.WHITE;
         if (temp.equalsIgnoreCase("YELLOW")) return Color.YELLOW;
-        return null;
+        return Color.WHITE;
     }
 
     public static String isEnabledString(Boolean bool){

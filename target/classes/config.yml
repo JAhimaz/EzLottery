@@ -30,7 +30,16 @@ lottery-delay: 21000
 # ==================================================================================
 
 # Win Sound Settings
+enable-win-sound: true
 
 # Firework Settings
+enable-fireworks: true
+number-of-fireworks: 3
+enable-firework-flicker: true
+enable-firework-trail: true
+firework-main-colour: ORANGE
+firework-fade-colour: YELLOW
+firework-power: 2
 
-# Open Source - Credit Must Be Mentioned
+
+# Open Source - Redistribution is prohibited without permission
