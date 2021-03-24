@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="24b65ad8-b29f-4658-acb0-de3c2f60a214" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__me_clip_placeholderapi_2_10_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_md_5_bungeecord_chat_1_15_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_15_2_R0_1_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_25.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EzLottery.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EzLottery.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/Misc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/Misc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/dependencies/LotteryPlaceholderExpansion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/dependencies/LotteryPlaceholderExpansion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jahimaz/lotteryHandler/Lottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jahimaz/lotteryHandler/Lottery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/EzLottery-1.2.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/EzLottery-1.2.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/LotteryData.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jahimaz/EZLottery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-EzLottery-1.2.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-EzLottery-1.2.1.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,10 +52,10 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -95,6 +103,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -135,11 +144,24 @@
       <workItem from="1589768478874" duration="39000" />
       <workItem from="1589768557394" duration="813000" />
       <workItem from="1590291339210" duration="2151000" />
+      <workItem from="1616566852259" duration="46000" />
+      <workItem from="1616567055059" duration="261000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Project_Structure" timestamp="1588055523283">
