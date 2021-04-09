@@ -15,4 +15,6 @@ What is EzLottery? EzLottery is a Spigot plugin built to add a new fun way for y
 | [Setup & Configuration](https://github.com/JAhimaz/EzLottery/wiki/Setup-&-Configuration)  | [Commands & Permissions](https://github.com/JAhimaz/EzLottery/wiki/Commands-&-Permissions) | [Plugin Support](https://github.com/JAhimaz/EzLottery/wiki/Plugin-Support) |
 | Here you can access the default configs and tutorials  | This page gives u all the commands and permissions required/used in the plugin | Need further assistance? Links to the support pages and quick FAQ. |
 
+Spigot page preview:
+
 ![Preview](https://github.com/JAhimaz/EzLottery/blob/master/images/Preview.png)
